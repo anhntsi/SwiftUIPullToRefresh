@@ -11,11 +11,11 @@ import SwiftUI
 // MARK: RefreshableScrollViewConfiguration
 public struct RefreshableScrollViewConfiguration {
     /// The scroll view's axis.
-    public let axis: Axis
+    let axis: Axis
     /// Header: Refresh control configuration
-    public let refreshControl: RefreshControlConfiguration
+    let refreshControl: RefreshControlConfiguration
     /// Footer: Activity indicator configuration
-    public let activityIndicator: ActivityIndicatorConfiguration
+    let activityIndicator: ActivityIndicatorConfiguration
 
     public static func normal() -> RefreshableScrollViewConfiguration {
         return RefreshableScrollViewConfiguration(
@@ -24,17 +24,34 @@ public struct RefreshableScrollViewConfiguration {
             activityIndicator: ActivityIndicatorConfiguration()
         )
     }
+
+    public init(axis: Axis, refreshControl: RefreshControlConfiguration, activityIndicator: ActivityIndicatorConfiguration) {
+        self.axis = axis
+        self.refreshControl = refreshControl
+        self.activityIndicator = activityIndicator
+    }
 }
 
 // MARK: RefreshControlConfiguration
 public struct RefreshControlConfiguration {
-    public var tintColor: UIColor? = nil
-    public var attributedTitle: NSAttributedString? = nil
+    let tintColor: UIColor?
+    let attributedTitle: NSAttributedString?
+
+    public init(tintColor: UIColor? = nil, attributedTitle: NSAttributedString? = nil) {
+        self.tintColor = tintColor
+        self.attributedTitle = attributedTitle
+    }
 }
 
 // MARK: ActivityIndicatorConfiguration
 public struct ActivityIndicatorConfiguration {
-    public var style: UIActivityIndicatorView.Style = .medium
-    public var color: UIColor? = nil
-    public var height: CGFloat = 0
+    let style: UIActivityIndicatorView.Style
+    let color: UIColor?
+    let height: CGFloat
+
+    public init(style: UIActivityIndicatorView.Style = .medium, color: UIColor? = nil, height: CGFloat = 0) {
+        self.style = style
+        self.color = color
+        self.height = height
+    }
 }
